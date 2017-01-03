@@ -14,4 +14,19 @@ describe("moving a player", () => {
       done();
     });
   });
+
+  it("should move a player east in a 1x3 room", (done) => {
+    let player: Player = { x: 0, y: 0 };
+    let room: Room = { width: 3, height: 1 };
+
+    movePlayer(Direction.E, player, room).subscribe((result: MovePlayerResult) => {
+      if (result.succeeded) {
+        expect(result.player.x).to.equal(1);
+        expect(result.player.y).to.equal(0);
+        done();
+      } else {
+        done("expected move player to succeed but did not");
+      }
+    });
+  });
 });
