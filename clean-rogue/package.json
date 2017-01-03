@@ -1,0 +1,19 @@
+{
+  "name": "clean-rogue",
+  "version": "1.0.0",
+  "description": "Rogue-like written using Clean Architecture",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register test/**/*.ts"
+  },
+  "author": "Brian Butz",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.35",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "ts-node": "^2.0.0",
+    "typescript": "^2.1.4"
+  }
+}
