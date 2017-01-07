@@ -5,10 +5,9 @@ import { Observable } from "@reactivex/rxjs";
 
 export function movePlayer(direction: Direction, player: Player, room: Room): Observable<MovePlayerResult> {
   if (room.width > 1) {
-    let action: MovePlayerSuccess = {succeeded: true, player: {x: 1, y: 0}};
-    return Observable.of(action);
+    return Observable.of<MovePlayerResult>({succeeded: true, player: {x: 1, y: 0}});
   } else {
-    return Observable.of({succeeded: false});
+    return Observable.of<MovePlayerResult>({succeeded: false});
   }
 }
 
