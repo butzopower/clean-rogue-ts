@@ -1,4 +1,6 @@
 export enum Direction {
   N,
-  E
+  E,
+  S,
+  W
 }

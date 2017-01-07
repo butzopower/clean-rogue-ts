@@ -15,9 +15,9 @@ describe("moving a player", () => {
     });
   });
 
-  it("should move a player east in a 1x3 room", (done) => {
+  it("should move a player east in a 1x2 room", (done) => {
     let player: Player = { x: 0, y: 0 };
-    let room: Room = { width: 3, height: 1 };
+    let room: Room = { width: 2, height: 1 };
 
     movePlayer(Direction.E, player, room).subscribe((result: MovePlayerResult) => {
       if (result.succeeded) {
@@ -27,6 +27,28 @@ describe("moving a player", () => {
       } else {
         done("expected move player to succeed but did not");
       }
+    });
+  });
+
+  [
+    {direction: Direction.N, expectedPosition: {x: 1, y: 0}},
+    {direction: Direction.E, expectedPosition: {x: 2, y: 1}},
+    {direction: Direction.S, expectedPosition: {x: 1, y: 2}},
+    {direction: Direction.W, expectedPosition: {x: 0, y: 1}},
+  ].forEach((directionTest) => {
+    let directionName = Direction[directionTest.direction];
+    it(`should let a centered player move in direction ${directionName} in a 3x3 room`, (done) => {
+      let player = { x: 1, y: 1 };
+      let room = { width: 3, height: 3 };
+
+      movePlayer(directionTest.direction, player, room).subscribe((result: MovePlayerResult) => {
+        if (result.succeeded) {
+          expect(result.player).to.eql(directionTest.expectedPosition);
+          done();
+        } else {
+          done("expected move player to succeed but did not");
+        }
+      });
     });
   });
 });
